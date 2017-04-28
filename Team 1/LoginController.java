@@ -13,10 +13,12 @@ import java.io.IOException;
 public class LoginController {
 
     public Main main;
-    private User user;
-    // TODO: set the logged in user.
+//  private User user;
+// TODO: set the logged in user.
+
     private String Status;
     String category;
+    String un;
 
 
     @FXML
@@ -52,7 +54,7 @@ public class LoginController {
     }
 
 
-
+    @FXML
     public void OnLoginClicked(){
         if(((!student.isSelected()) && (!professor.isSelected())) && (!admin.isSelected()))
         {
@@ -71,33 +73,46 @@ public class LoginController {
             main.outToServer.writeBytes(username.getText() + "\n");
             main.outToServer.writeBytes(password.getText() + "\n");
             Status = main.inFromServer.readLine();
+            un = main.inFromServer.readLine();
+            System.out.println(un);
+            System.out.println(Status);
 
         }catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        if(Status.equals("Success"))
+        if(Status.contains("Success"))
         {
             if(category.equals("student"))
             {
-                Student s = (Student) user;
-                try {
-                    user.setUsername(main.inFromServer.readLine());
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
+                Student s = new Student();
+
+                s.setUsername(un);
+
                 showStudent(s,this.main);
 
             }
             else if(category.equals("professor"))
             {
+                Professor p = new Professor();
 
+                p.setUsername(un);
+
+                showProfessor(p,this.main);
             }
             else
             {
+                Admin a = new Admin();
+
+                a.setUsername(un);
+
+                showAdmin(a,this.main);
 
             }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Incorrect Username or password, please recheck", "Notification", JOptionPane.INFORMATION_MESSAGE);
         }
 
 
@@ -115,6 +130,48 @@ public class LoginController {
             controller.setMain(main,s);
 
             main.rootLayout.setCenter(student);
+
+
+
+        }catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void showProfessor(Professor p,Main main){ //TODO: fix this
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("Professor.fxml"));
+            AnchorPane professor = (AnchorPane) loader.load();
+
+            ProfessorPageController controller = new ProfessorPageController();
+            controller = loader.getController();
+            controller.setMain(main,p);
+
+            main.rootLayout.setCenter(professor);
+
+
+
+        }catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void showAdmin(Admin a,Main main){ //TODO: fix this is not compeleted
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("Admin.fxml"));
+            AnchorPane admin = (AnchorPane) loader.load();
+
+//            StudentPageController controller = new StudentPageController();
+//            controller = loader.getController();
+//            controller.setMain(main,a);
+
+            main.rootLayout.setCenter(admin);
 
 
 

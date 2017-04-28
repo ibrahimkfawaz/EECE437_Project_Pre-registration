@@ -6,8 +6,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NewMessageController">
    <children>
-      <TextArea layoutX="23.0" layoutY="47.0" prefHeight="287.0" prefWidth="556.0" promptText="Content" />
-      <Button layoutX="274.0" layoutY="346.0" mnemonicParsing="false" text="Send" />
-      <TextField layoutX="23.0" layoutY="14.0" prefHeight="25.0" prefWidth="556.0" promptText="Title" />
+      <TextArea fx:id="message" layoutX="23.0" layoutY="47.0" prefHeight="287.0" prefWidth="556.0" promptText="Content" />
+      <Button layoutX="274.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#onSendClicked" text="Send" />
+      <TextField fx:id="title" layoutX="23.0" layoutY="14.0" prefHeight="25.0" prefWidth="556.0" promptText="Title" />
    </children>
 </AnchorPane>

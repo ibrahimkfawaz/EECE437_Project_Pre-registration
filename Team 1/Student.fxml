@@ -6,6 +6,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StudentPageController">
    <children>
-      <Button fx:id="forum" layoutX="451.0" layoutY="33.0" mnemonicParsing="false" onAction="#onForumClicked" onMouseClicked="#onForumClicked" text="Negotiations" />
+      <Button fx:id="forum" layoutX="451.0" layoutY="33.0" mnemonicParsing="false"  onMouseClicked="#onForumClicked" text="Negotiations" />
    </children>
 </AnchorPane>

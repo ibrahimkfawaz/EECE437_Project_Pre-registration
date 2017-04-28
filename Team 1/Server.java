@@ -19,6 +19,7 @@ public class Server extends Thread {
     private BufferedReader input = null;
     public ObjectInputStream objInput = null;
     public ObjectOutputStream objToClient = null;
+    private int titleid;
 
 
     public Server(Socket clientSocket) {
@@ -30,7 +31,7 @@ public class Server extends Thread {
             objToClient = new ObjectOutputStream(clientSocket.getOutputStream());
 
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
 
     }
@@ -64,11 +65,16 @@ public class Server extends Thread {
                         System.exit(0);  //TODO: sould be removed
                         break;
                     case "getMessages":
+                        GetMessage(input);
                         break;
                     case "setNewThread":
                         NewThread(input);
                         break;
+                    case "getReplies":
+                        getreplies(input);
+                        break;
                     case "replyToThread":
+                        replytothread(input);
                         break;
                     case "closeThread":
                         break;
@@ -77,11 +83,12 @@ public class Server extends Thread {
 
             }catch (IOException e)
             {
-                e.printStackTrace();
+
             }
 
         }
     }
+
 
     public void login(BufferedReader in) {
         try {
@@ -104,12 +111,11 @@ public class Server extends Thread {
                 if (!resultSet.next()) {    //means no result
                     DataOut.writeBytes("Failed: 1\n"); // Failed with code 1 means invalid credentials
                 } else {
-                    String out = "Success" + resultSet.getString(1) + "\n";
+                    String out = "Success" + "\n" + resultSet.getString(2) + "\n";
                     DataOut.writeBytes(out);
                 }
             }catch (SQLException e)
             {
-                e.printStackTrace();
             }
 
         } catch (IOException e) {
@@ -118,6 +124,126 @@ public class Server extends Thread {
     }
 
     public void NewThread(BufferedReader in){
+        try {
+            String message = input.readLine();
+            String title = input.readLine();
+            String intiator = input.readLine();
+            ResultSet resultSet=null;
+
+            titleid =0;
+            try {
+                 resultSet = statement.executeQuery("select idThreads from threads where threadtitle=\"" + title + "\"  ;");
+
+
+            if (!resultSet.next()){
+                statement.execute("insert into threads (titleid,threadtitle,message,sender,initiator) values (\" 1 \",\"" + title + "\",\"" + message + "\",\"" + intiator + "\",\"" + intiator + "\");");
+
+            }else
+            {
+                while(resultSet.next())
+                {
+                    titleid++;
+                }
+                titleid=titleid+2;
+                statement.execute("insert into threads (titleid,threadtitle,message,sender,initiator) values (\"" + titleid + "\",\"" + title + "\",\"" + message + "\",\"" + intiator + "\",\"" + intiator + "\");");
+
+            }
+
+
+            }catch(SQLException e){}
+            String out = "Success" + "\n" ;
+            DataOut.writeBytes(out);
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void GetMessage(BufferedReader in){
+        String query = "select * from threads";
+        int count=0;
+        try {
+            ResultSet rs = statement.executeQuery(query);
+            while(rs.next())
+            {
+                count++;
+            }
+            try {
+                DataOut.writeBytes(count + "\n");
+
+                System.out.println(count);
+
+                for (int i = 1; i <= count; i++) {
+
+                    rs.absolute(i);
+
+                    DataOut.writeBytes(rs.getString(3) + "\n" + rs.getString(2) + "\n" + rs.getString(6) + "\n" + rs.getString(4) + "\n"); // Message
+                }
+            }catch (IOException e)
+            {
+
+            }
+
+        }catch(SQLException e){
+
+        }
+    }
+
+    public void getreplies(BufferedReader in){
+        String tid = null;
+        try {
+           tid = in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String query = "select * from replies where threadid ='" + tid +  "';";
+        int count=0;
+        try {
+            ResultSet rs = statement.executeQuery(query);
+            while(rs.next())
+            {
+                count++;
+            }
+            try {
+                DataOut.writeBytes(count + "\n");
+
+                for (int i = 1; i <= count; i++) {
+
+                    rs.absolute(i);
+
+                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(3) + "\n" + rs.getString(4) + "\n");
+                }
+            }catch (IOException e)
+            {
+
+            }
+
+        }catch(SQLException e){
+
+        }
+    }
+
+    public void replytothread(BufferedReader in){
+        String threadid = null;
+        String replier = null;
+        String message = null;
+        try {
+            threadid = in.readLine();
+            replier = in.readLine();
+            message = in.readLine();
+
+
+        try {
+            statement.execute("insert into replies (threadid,replier,message) values (\"" + threadid + "\",\"" + replier + "\",\"" + message + "\");");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            DataOut.writeBytes("Success" + "\n");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
