@@ -6,7 +6,12 @@ public class Room
 	private String bldg; //name of building
 	private int number; //room number
 	private int capacity; //number of seats
-	private TimeSlots slots; //time slots of every room
+	private TimeSlots slots; //representation of time slots of every room
+
+	public Room()
+	{
+		this.slots = new TimeSlots();
+	}
 
 	//return the id
 	public int getId() 
