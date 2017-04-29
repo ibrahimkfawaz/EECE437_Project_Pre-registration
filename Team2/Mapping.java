@@ -62,9 +62,9 @@ public class Mapping {
         	{
         		int x;
 			for (int i=0; i<RoomCapacity20.size(); i++){
-        		if (RoomCapacity20.get(i).getId()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
+        		if (RoomCapacity20.get(i).getemptyslot()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
         		{
-        			x=RoomCapacity20.get(i).getId();
+        			x=RoomCapacity20.get(i).getemptyslot();
         			allcourses[n].settime(x);	
         			allcourses[n].setroom(RoomCapacity20.get(i));
         		}
@@ -75,21 +75,21 @@ public class Mapping {
         	{ int x1;
         	for (int i=0; i<RoomCapacity30.size(); i++){
     
-            		 if (RoomCapacity30.get(i).getId()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
+            		 if (RoomCapacity30.get(i).getemptyslot()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
             		{
-            			x1=RoomCapacity30.get(i).getId();
+            			x1=RoomCapacity30.get(i).getemptyslot();
             			allcourses[n].settime(x1);	
             			allcourses[n].setroom(RoomCapacity30.get(i));
             		}
-            		else if (RoomCapacity40.get(i).getId()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
+            		else if (RoomCapacity40.get(i).getemptyslotd()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
             		{
-            			x1=RoomCapacity40.get(i).getId();
+            			x1=RoomCapacity40.get(i).getemptyslot();
             			allcourses[n].settime(x1);	
             			allcourses[n].setroom(RoomCapacity40.get(i));
             		}
-            		else if (RoomCapacity50.get(i).getId()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
+            		else if (RoomCapacity50.get(i).getemptyslot()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
             		{
-            			x1=RoomCapacity50.get(i).getId();
+            			x1=RoomCapacity50.get(i).getemptyslot();
             			allcourses[n].settime(x1);	
             			allcourses[n].setroom(RoomCapacity50.get(i));
             		}
@@ -99,15 +99,15 @@ public class Mapping {
         		else if (allcourses[n].getnumofstudents()<=40)  {
         			int x1;
         			for (int i=0; i<RoomCapacity40.size(); i++){
-        		if (RoomCapacity40.get(i).getId()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
+        		if (RoomCapacity40.get(i).getemptyslot()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
         		{
-        			x1=RoomCapacity40.get(i).getId();
+        			x1=RoomCapacity40.get(i).getemptyslot();
         			allcourses[n].settime(x1);	
         			allcourses[n].setroom(RoomCapacity40.get(i));
         		}
-        		else if (RoomCapacity50.get(i).getId()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
+        		else if (RoomCapacity50.get(i).getemptyslot()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
         		{
-        			x1=RoomCapacity50.get(i).getId();
+        			x1=RoomCapacity50.get(i).getemptyslot();
         			allcourses[n].settime(x1);	
         			allcourses[n].setroom(RoomCapacity30.get(i));
         		}
@@ -120,9 +120,9 @@ public class Mapping {
         		else if (allcourses[n].getnumofstudents()<=50){
         		int x;
 			for (int i=0; i<RoomCapacity50.size(); i++){
-        		if (RoomCapacity50.get(i).getId()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
+        		if (RoomCapacity50.get(i).getemptyslot()>0)//assuming there is a function that goes through time slot and returns first empty available time; if none empty returns negative number
         		{
-        			x=RoomCapacity50.get(i).getId();
+        			x=RoomCapacity50.get(i).getemptyslot();
         			allcourses[n].settime(x);	
         			allcourses[n].setroom(RoomCapacity50.get(i));
         		}
