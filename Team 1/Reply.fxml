@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReplyController">
+   <children>
+      <TextArea fx:id="message" layoutX="20.0" layoutY="32.0" prefHeight="328.0" prefWidth="566.0" promptText="Message" />
+      <Button fx:id="send" layoutX="274.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#OnSendCLicked" text="Send" />
+   </children>
+</AnchorPane>
