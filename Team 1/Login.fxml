@@ -13,7 +13,7 @@
    <children>
       <TextField fx:id="username" layoutX="215.0" layoutY="84.0" promptText="Username" />
       <PasswordField fx:id="password" layoutX="215.0" layoutY="129.0" promptText="Password" />
-      <Button fx:id="login" layoutX="267.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnLoginClicked" onMouseClicked="#OnLoginClicked" text="Login" />
+      <Button fx:id="login" layoutX="267.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#OnLoginClicked" text="Login" />
       <Button fx:id="signup" layoutX="263.0" layoutY="287.0" mnemonicParsing="false" text="Signup" />
       <RadioButton fx:id="student" layoutX="246.0" layoutY="166.0" mnemonicParsing="false" text="Student" />
       <RadioButton fx:id="professor" layoutX="246.0" layoutY="192.0" mnemonicParsing="false" text="Professor" />

@@ -15,7 +15,7 @@ public class TCPServer {
             System.out.println("Server running...");
             while (true){
                 Socket clientSocket=serverSocket.accept();          // waiting for client connections
-                (new Server(clientSocket)).run();            // start a new thread per connection and throw to it the client socket
+                (new Server(clientSocket)).start();            // start a new thread per connection and throw to it the client socket
             }                                                       // that includes the IP and port of both server and client
         }
         catch (IOException e){

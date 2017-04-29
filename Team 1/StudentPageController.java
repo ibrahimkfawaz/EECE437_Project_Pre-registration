@@ -18,6 +18,7 @@ public class StudentPageController {
 
     public void setMain(Main main,Student stud){
         this.main= main;
+        this.localstudent = stud;
     }
 
     public void onForumClicked(){
