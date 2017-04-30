@@ -56,18 +56,15 @@ public class prof_screen {
 		comboBox.addItem("EECE 432");
 		comboBox.addItem("EECE 437");
 		
-		JLabel lblCourse = new JLabel("Course: ");		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Monday");
 		
-		JRadioButton rdbtnTuesday = new JRadioButton("Tuesday");
+
+	
 		
-		JRadioButton rdbtnWednesday = new JRadioButton("Wednesday");
-		
-		JRadioButton rdbtnThursday = new JRadioButton("Thursday");
-		
-		JRadioButton rdbtnFriday = new JRadioButton("Friday");
+		JLabel lblCourse = new JLabel("Course: ");
 		
 		JLabel lblTime = new JLabel("Timing:");
+		
+		
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.addItem("8:00 AM - 8:50 AM");
@@ -80,51 +77,127 @@ public class prof_screen {
 		comboBox_1.addItem("3:00 PM - 3:50 PM");
 		comboBox_1.addItem("4:00 PM - 4:50 PM");
 		comboBox_1.addItem("5:00 PM - 5:50 PM");
+		
+		
+		
+		
+		JButton btnNewButton = new JButton("Finish");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Scheduling PROCCESS
+				
+				String x=comboBox.getSelectedItem().toString();
+				String t=comboBox_1.getSelectedItem.toString();
+				String d=comboBox_2.getSelectedItem.toString();
+				
+				//Current_Course_Database c = new Current_Course_Database(); //assuming Current_Course_Database exists;  Current_Course_Database contains courses offered by professors;timings offered by professors;number of students per course;
+				//c.addcourse(x,d,t);							   //add course,day,and time to Current_Course_Database ;
+			}
+		});
+		
+		JLabel lblNewLabel = new JLabel("Please Enter the course you would like to give this semester and your preferred time:");
+		
+		JLabel lblHelloProfessor = new JLabel("Hello Professor! ");
+		
+		JLabel lblDays = new JLabel("Days:");
+		
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.addItem("MWF");
+		comboBox_2.addItem("TR");
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Monday");
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Wednesday");
+		
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Friday");
+		
+		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Tuesday");
+		
+		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("Thursday");
+		
+		
+		
+		
+		
+		
 		GroupLayout groupLayout = new GroupLayout(frmProfessorScreen.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(12)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblCourse)
+								.addComponent(lblDays, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblTime, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
+							.addGap(125)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, 138, Short.MAX_VALUE)))
+					.addGap(14))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(226)
+					.addComponent(lblHelloProfessor)
+					.addContainerGap(223, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(rdbtnNewRadioButton_2)
+					.addPreferredGap(ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+					.addComponent(btnNewButton)
+					.addGap(181))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblCourse)
-						.addComponent(lblTime, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-					.addGap(26)
+						.addComponent(rdbtnNewRadioButton)
+						.addComponent(rdbtnNewRadioButton_1))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
-					.addGap(210)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(rdbtnFriday)
-						.addComponent(rdbtnThursday)
-						.addComponent(rdbtnWednesday)
-						.addComponent(rdbtnTuesday)
-						.addComponent(rdbtnNewRadioButton))
-					.addGap(40))
+						.addComponent(rdbtnNewRadioButton_4)
+						.addComponent(rdbtnNewRadioButton_3))
+					.addContainerGap(349, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
+					.addGap(14)
+					.addComponent(lblHelloProfessor)
+					.addGap(3)
+					.addComponent(lblNewLabel)
+					.addGap(27)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCourse)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(rdbtnNewRadioButton)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnTuesday)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnWednesday)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rdbtnThursday)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnFriday))
+						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTime))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDays)
+						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblCourse)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(rdbtnNewRadioButton)
+								.addComponent(rdbtnNewRadioButton_3))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblTime)
-								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(149, Short.MAX_VALUE))
+								.addComponent(rdbtnNewRadioButton_1)
+								.addComponent(rdbtnNewRadioButton_4))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(rdbtnNewRadioButton_2)
+							.addGap(4))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNewButton)
+							.addContainerGap())))
 		);
 		frmProfessorScreen.getContentPane().setLayout(groupLayout);
 	}

@@ -106,10 +106,10 @@ public class login_screen {
 		UserNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		SpringLayout springLayout = new SpringLayout();
+		springLayout.putConstraint(SpringLayout.WEST, UserNameTextField, 0, SpringLayout.WEST, PassWordTextField);
 		springLayout.putConstraint(SpringLayout.EAST, UserNameTextField, 0, SpringLayout.EAST, PassWordTextField);
 		springLayout.putConstraint(SpringLayout.EAST, PassWordTextField, -10, SpringLayout.EAST,
 				frmWelcomeScreen.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, UserNameTextField, 0, SpringLayout.WEST, PassWordTextField);
 		springLayout.putConstraint(SpringLayout.NORTH, AdminstrationRadioButton, 6, SpringLayout.SOUTH,
 				ProfessorRadioButton);
 		springLayout.putConstraint(SpringLayout.WEST, AdminstrationRadioButton, 0, SpringLayout.WEST,
@@ -138,6 +138,7 @@ public class login_screen {
 		frmWelcomeScreen.getContentPane().add(LogInButton);
 
 		JLabel UserNameLabel = new JLabel("Username");
+		springLayout.putConstraint(SpringLayout.NORTH, UserNameTextField, 0, SpringLayout.NORTH, UserNameLabel);
 		springLayout.putConstraint(SpringLayout.NORTH, UserNameLabel, 60, SpringLayout.SOUTH, AdminstrationRadioButton);
 		springLayout.putConstraint(SpringLayout.WEST, UserNameLabel, 10, SpringLayout.WEST,
 				frmWelcomeScreen.getContentPane());
