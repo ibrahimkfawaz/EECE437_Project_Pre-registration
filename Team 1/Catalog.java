@@ -1,7 +1,7 @@
 public class Catalog
 {
-	private ArrayList<String> names; //names of courses, "EECS 201 - Introduction to Programming" for example
-	private ArrayList<String> descs; //brief description of each course
+	public ArrayList<String> names; //names of courses, "EECS 201 - Introduction to Programming" for example
+	public ArrayList<String> descs; //brief description of each course
 
 
 	//constructor
