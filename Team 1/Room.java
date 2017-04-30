@@ -7,12 +7,37 @@ public class Room
 	private int number; //room number
 	private int capacity; //number of seats
 	private TimeSlots slots; //representation of time slots of every room
-
+	/*
+		represents the classes associated with the time slots
+		for example if slots[1] = MWF@9-9:50/AM and classes[1] = 14607
+		Then the course of CRN 14607 is in this room every MWF at 9 AM till 9:50 AM
+		
+	*/
+	private ArrayList<Integer> classes; 
 	public Room()
 	{
-		this.slots = new TimeSlots();
+		slots = new TimeSlots();
+		classes = new ArrayList<Integer>();
 	}
-
+	//check if a slot is available
+	public boolean isSlotAvailable(String s)
+	{
+		return slots.isAvailable(s);
+	}
+	//add a class in a certain time slot
+	public void addClass(int crn,String slot)
+	{
+		//first check if the slot is available
+		if(!(slots.isAvailable(slot)))
+		{
+			System.out.println("Error: this slot is already occupied");
+		}
+		else
+		{
+			classes.add(crn);
+			slots.addSlot(s);
+		}
+	}
 	//return the id
 	public int getId() 
 	{
