@@ -57,12 +57,12 @@ public class Main extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
-            primaryStage.setWidth(1000);//restrain minimize/maximize
+            primaryStage.setWidth(750);//restrain minimize/maximize
             primaryStage.setHeight(500);
-            primaryStage.setMaxHeight(1000);
+            primaryStage.setMaxHeight(500);
             primaryStage.setMinHeight(500);
-            primaryStage.setMinWidth(1000);
-            primaryStage.setMaxWidth(1000);
+            primaryStage.setMinWidth(750);
+            primaryStage.setMaxWidth(500);
 
         } catch (IOException e) {
             e.printStackTrace();

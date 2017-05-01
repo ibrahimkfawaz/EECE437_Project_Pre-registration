@@ -6,6 +6,34 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StudentPageController">
    <children>
-      <Button fx:id="forum" layoutX="451.0" layoutY="33.0" mnemonicParsing="false"  onMouseClicked="#onForumClicked" text="Negotiations" />
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Search">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="forum" layoutX="469.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#onForumClicked" text="Negotiations" />
+                        <ListView fx:id="depts" layoutX="43.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Button layoutX="469.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#onLogoutClicked" prefHeight="25.0" prefWidth="85.0" text="Logout" />
+                        <Button layoutX="43.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#onCheckClicked" prefHeight="25.0" prefWidth="200.0" text="Check Courses" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Schedule">
+             <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                   <children>
+                      <TableView fx:id="mycourses" layoutX="24.0" layoutY="43.0" prefHeight="295.0" prefWidth="547.0">
+                         <columns>
+                            <TableColumn fx:id="myCoursename" prefWidth="93.0" text="Course Name" />
+                            <TableColumn fx:id="myCoursetime" prefWidth="453.0" text="Course Time" />
+                         </columns>
+                      </TableView>
+                   </children></AnchorPane>
+             </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

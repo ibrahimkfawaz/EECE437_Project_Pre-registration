@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
+   <children>
+       <TableView fx:id="availablecourses" layoutX="31.0" layoutY="14.0" prefHeight="340.0" prefWidth="543.0">
+           <columns>
+               <TableColumn fx:id="Coursename" prefWidth="145.0" text="Course Name" />
+               <TableColumn fx:id="CourseTime" prefWidth="142.0" text="Course Time" />
+               <TableColumn fx:id="Coursedesc" prefWidth="258.0" text="Course Description" />
+           </columns>
+       </TableView>
+      <Button layoutX="31.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#OnPreregisterClicked" prefHeight="23.0" prefWidth="184.0" text="Pre-Register" />
+      <Button layoutX="511.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#OnBackClicked" text="Back" />
+   </children>
+</AnchorPane>

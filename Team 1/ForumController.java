@@ -1,6 +1,6 @@
 package sample;
 
-import com.sun.org.apache.xml.internal.utils.ThreadControllerWrapper;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,6 +25,8 @@ import java.util.Observable;
 public class ForumController {
     private Main main;
     private User localuser;
+    private StudentPageController scontroller;
+    private ProfessorPageController pcontroller;
 
     @FXML
     private Button newmessage;
@@ -47,14 +49,20 @@ public class ForumController {
 
     public ForumController(){}
 
-    public void setMain(Main main,User u){
+    public void setMain(Main main,User u,PageController controller){
         this.main= main;
-        if(u instanceof Student)
+        if(u instanceof Student) {
             this.localuser = (Student) u;
-        else if(u instanceof Professor)
+            this.scontroller = (StudentPageController) controller;
+        }
+        else if(u instanceof Professor) {
             this.localuser = (Professor) u;
-        else
+            this.pcontroller = (ProfessorPageController) controller;
+        }
+        else {
             this.localuser = (Admin) u;
+            //TODO: amdinpagecontroller
+        }
 
         try {
             main.outToServer.writeBytes("getMessages"+"\n");
@@ -108,13 +116,16 @@ public class ForumController {
         received.setItems(data2);
         init.setItems(data);
 
-
-
     }
 
-    public void onBackClicked(){
+    public void onBackClicked(){ //TODO: fix
         LoginController l = new LoginController();
-        l.showStudent((Student)this.localuser,this.main);
+        if(localuser instanceof Student) {
+            l.showStudent((Student) this.localuser, this.main,this.scontroller);
+        }
+        else if(localuser instanceof Professor){
+            l.showProfessor((Professor) this.localuser,this.main);
+        }
     }
 
     public void onListViewClicked(){

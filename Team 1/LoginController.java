@@ -73,24 +73,22 @@ public class LoginController {
             main.outToServer.writeBytes(username.getText() + "\n");
             main.outToServer.writeBytes(password.getText() + "\n");
             Status = main.inFromServer.readLine();
-            un = main.inFromServer.readLine();
+
             System.out.println(un);
             System.out.println(Status);
 
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+
 
         if(Status.contains("Success"))
         {
+            un = main.inFromServer.readLine();
             if(category.equals("student"))
             {
                 Student s = new Student();
 
                 s.setUsername(un);
 
-                showStudent(s,this.main);
+                showStudent(s,this.main,new StudentPageController());
 
             }
             else if(category.equals("professor"))
@@ -115,17 +113,20 @@ public class LoginController {
             JOptionPane.showMessageDialog(null,"Incorrect Username or password, please recheck", "Notification", JOptionPane.INFORMATION_MESSAGE);
         }
 
-
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
-    public void showStudent(Student s,Main main){
+    public void showStudent(Student s,Main main,StudentPageController controller){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("Student.fxml"));
             AnchorPane student = (AnchorPane) loader.load();
 
-            StudentPageController controller = new StudentPageController();
+
             controller = loader.getController();
             controller.setMain(main,s);
 

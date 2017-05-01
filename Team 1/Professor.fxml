@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProfessorPageController">
+    <children>
+      <TabPane layoutX="3.0" layoutY="2.0" prefHeight="394.0" prefWidth="594.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Main">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="324.0" prefWidth="530.0">
+                     <children>
+                          <Button layoutX="318.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onForumClicked" text="Negotiations" />
+                        <TableView fx:id="proposedcourses" layoutX="33.0" layoutY="64.0" prefHeight="292.0" prefWidth="538.0">
+                          <columns>
+                            <TableColumn fx:id="Coursename" prefWidth="145.0" text="Course Name" />
+                            <TableColumn fx:id="CourseTime" prefWidth="142.0" text="Course Time" />
+                              <TableColumn fx:id="Coursedesc" prefWidth="258.0" text="Course Description" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onNewCourseClicked" text="New Course" />
+                        <Label layoutX="33.0" layoutY="47.0" prefHeight="17.0" prefWidth="211.0" text="Below are your proposed courses" />
+                        <Button layoutX="117.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#OnDeleteClicked" text="Delete Course" />
+                        <Button layoutX="216.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#OnModifyClicked" text="Modify Course" />
+                        <Button layoutX="517.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#OnLogoutClicked" text="Logout" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Catalog">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="allcourses" layoutX="24.0" layoutY="43.0" prefHeight="295.0" prefWidth="547.0">
+                          <columns>
+                            <TableColumn fx:id="allCoursename" prefWidth="93.0" text="Course Name" />
+                            <TableColumn fx:id="allCoursedesc" prefWidth="453.0" text="Course Description" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
+</AnchorPane>

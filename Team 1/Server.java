@@ -76,6 +76,27 @@ public class Server extends Thread {
                     case "replyToThread":
                         replytothread(input);
                         break;
+                    case "addNewCourse":
+                        addnewcourse(input);
+                        break;
+                    case "modifyCourse":
+                        modifycourse(input);
+                        break;
+                    case "getCourses":
+                        getcourses(input);
+                        break;
+                    case "deleteCourse":
+                        deletecourse(input);
+                        break;
+                    case "getCatalog":
+                        getcatalog(input);
+                        break;
+                    case "getOffered":
+                        getoffered(input);
+                        break;
+                    case "getCrn":
+                        getcrn(input);
+                        break;
                     case "closeThread":
                         break;
 
@@ -245,6 +266,198 @@ public class Server extends Thread {
             e.printStackTrace();
         }
 
+    }
+
+    public void getcourses(BufferedReader in){
+        int count=0;
+        try {
+            String professor = in.readLine();
+            String query = "select * from courses where professor ='" + professor +  "';";
+            ResultSet rs = null;
+            try {
+                 rs = statement.executeQuery(query);
+
+                 while(rs.next())
+                 {
+                      count++;
+                 }
+
+                DataOut.writeBytes(count + "\n");
+
+                for (int i = 1; i <= count; i++) {
+
+                    rs.absolute(i);
+
+                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(4) + "\n" + rs.getString(5) + "\n"+ rs.getString(1) + "\n" + rs.getString(9)+"\n");
+                    //TODO: room/timeslot
+                }
+
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                }
+            } catch (IOException e) {
+            e.printStackTrace();
+            }
+
+    }
+
+    public void addnewcourse(BufferedReader in)   {
+        try {
+            String coursename = in.readLine();
+            String dept = coursename.substring(0,4);
+            int cap = 0;
+            String professor = in.readLine();
+            String timeslot = in.readLine();
+            String coursedesc = in.readLine();
+            String room = in.readLine();
+            String coursen = in.readLine();
+            ResultSet rs1=  null;
+
+            try {
+                statement.execute("insert into courses (coursename,professor,coursedesc,timeslot,room,capacity,dept,coursen) values (\"" + coursename + "\",\"" + professor + "\",\"" + coursedesc + "\",\"" + timeslot + "\",\"" + room + "\",\"" + cap + "\",\"" + dept + "\",\"" + coursen +"\");");
+                rs1 =  statement.executeQuery("SELECT idcatalog FROM catalogue WHERE coursename = '" + coursename + "';");
+                if(!rs1.next())
+                {
+                    statement.execute("insert into catalogue (coursename,coursedesc) values (\"" + coursename + "\",\"" + coursedesc + "\");");
+
+                }
+
+                DataOut.writeBytes("Success"+"\n");
+
+            }catch (SQLException e){
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deletecourse(BufferedReader in){
+        try {
+            String prof=in.readLine();
+            String coursename = in.readLine();
+            System.out.print(prof);
+        try {
+           String query ="DELETE FROM courses WHERE professor='" + prof + "' and coursename='" + coursename + "';";
+           statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            DataOut.writeBytes("Success"+"\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+   public void getcrn(BufferedReader in){
+       ResultSet rs = null;
+       try{
+           try{
+
+               String coursename = in.readLine();
+               rs =  statement.executeQuery("select idcourses from courses where coursename = '" + coursename + "';");
+
+               rs.next();
+
+               DataOut.writeBytes(rs.getString(1)+"\n");
+
+
+           }catch (SQLException e){
+
+           }
+       }catch (IOException e){
+
+       }
+
+   }
+
+    public void modifycourse(BufferedReader in) {
+        try {
+            String coursename = in.readLine();
+            String professor = in.readLine();
+            String timeslot = in.readLine();
+            String coursedesc = in.readLine();
+            String coursen = in.readLine();
+            int crn = Integer.parseInt(in.readLine());
+            String room = in.readLine();
+
+
+            try {
+                String query = "UPDATE courses SET coursename='" + coursename + "',professor='" + professor +"',timeslot ='" + timeslot + "', coursedesc='"+ coursedesc +"', coursen = '"+ coursen +"' WHERE idcourses='" + crn + "';";
+                statement.executeUpdate(query);
+
+            }catch (SQLException e){
+
+            }
+            DataOut.writeBytes("Success" + "\n"+ crn +"\n");
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+        public void getcatalog(BufferedReader in){
+        int count=0;
+        try {
+            String query = "select * from catalogue";
+            ResultSet rs = null;
+            try {
+                rs = statement.executeQuery(query);
+
+                while(rs.next())
+                {
+                    count++;
+                }
+
+                DataOut.writeBytes(count + "\n");
+
+                for (int i = 1; i <= count; i++) {
+
+                    rs.absolute(i);
+
+                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(3) +"\n");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getoffered(BufferedReader in){
+        int count =0;
+        try {
+            String dept = in.readLine();
+            String query = "select * from courses where dept ='" + dept +  "';";
+            ResultSet rs = null;
+            try{
+                rs = statement.executeQuery(query);
+                while(rs.next())
+                {
+                    count++;
+                }
+
+                DataOut.writeBytes(count + "\n");
+
+                for (int i = 1; i <= count; i++) {
+
+                    rs.absolute(i);
+
+                    DataOut.writeBytes(rs.getString(2) + "\n"+rs.getString(4) +"\n"+rs.getString(5) +"\n");
+                }
+
+
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
 
