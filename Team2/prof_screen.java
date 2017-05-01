@@ -81,20 +81,7 @@ public class prof_screen {
 		
 		
 		
-		JButton btnNewButton = new JButton("Finish");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				//Scheduling PROCCESS
-				
-				String x=comboBox.getSelectedItem().toString();
-				String t=comboBox_1.getSelectedItem.toString();
-				String d=comboBox_2.getSelectedItem.toString();
-				
-				//Current_Course_Database c = new Current_Course_Database(); //assuming Current_Course_Database exists;  Current_Course_Database contains courses offered by professors;timings offered by professors;number of students per course;
-				//c.addcourse(x,d,t);							   //add course,day,and time to Current_Course_Database ;
-			}
-		});
+
 		
 		JLabel lblNewLabel = new JLabel("Please Enter the course you would like to give this semester and your preferred time:");
 		
@@ -116,7 +103,23 @@ public class prof_screen {
 		
 		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("Thursday");
 		
-		
+		JButton btnNewButton = new JButton("Finish");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Scheduling PROCCESS
+				
+				String x=comboBox.getSelectedItem().toString();
+				String t=comboBox_1.getSelectedItem.toString();
+				String d=comboBox_2.getSelectedItem.toString();
+				
+				//add course name, time and day to CurrentCourse
+				CurrentCourse c= new CurrentCourse();
+				c.setname(x);
+				//c.settime(t); should make time slots in CurrentCourse instead of time to add time and day
+				//need to take professor's name and add it too							 
+			}
+		});
 		
 		
 		
