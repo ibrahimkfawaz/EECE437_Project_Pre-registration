@@ -23,6 +23,7 @@ public class ThreadsController {
     private Threads thisthread;
     private ArrayList<Reply> replies = new ArrayList<>();
     private User localuser;
+    private String post;
     private String replier;
     private String threadid;
     private String message;
@@ -50,15 +51,19 @@ public class ThreadsController {
             count = Integer.parseInt(main.inFromServer.readLine());
 
             for (int i = 0; i < count; i++) {
-
+                Professor rep=new Professor();
                 threadid = main.inFromServer.readLine();
                 replier = main.inFromServer.readLine();
                 message = main.inFromServer.readLine();
+                post = main.inFromServer.readLine();
 
-                replies.add(i, new Reply(replier, threadid, message));
+                if(post.equals("Professor"))
+                    rep = new Professor(replier);
+
+                replies.add(i, new Reply(rep, threadid, message));
                 t.setReplies(replies);
 
-                texts.setText(texts.getText() + "\n" + replier + " :" + "\n" + message + "\n");
+                texts.setText(texts.getText() + "\n" +  post + " " + replier + " :" + "\n" + message + "\n");
 
             }
 
@@ -86,7 +91,11 @@ public class ThreadsController {
     }
 
     public void update(Reply r){
-        this.texts.setText(this.texts.getText() + "\n" + r.getReplier() + " :" + "\n" + r.getMessage() + "\n");
+        if(r.getReplier() instanceof  Professor)
+            post = "Professor";
+        else if(r.getReplier() instanceof Student)
+            post = "Student";
+        this.texts.setText(this.texts.getText() + "\n" +post+" "+ r.getReplier().username + " :" + "\n" + r.getMessage() + "\n");
     }
 
 }

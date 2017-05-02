@@ -16,6 +16,7 @@ public class ReplyController {
     private User localuser;
     private Threads t;
     ThreadsController tc;
+    String post;
     @FXML
     private TextArea message;
 
@@ -24,7 +25,12 @@ public class ReplyController {
 
 
     public void setMain(Main main, User user,Threads t,ThreadsController tc){
-        this.localuser = user;
+        this.localuser = user; this.localuser = user;
+        if(user instanceof Professor)
+            post="Professor";
+        else if(user instanceof Student)
+            post="Student";
+
         this.main = main;
         this.t = t;
         this.tc=tc;
@@ -37,12 +43,12 @@ public class ReplyController {
                 JOptionPane.showMessageDialog(null,"Please enter some text in the message", "Notification", JOptionPane.INFORMATION_MESSAGE);
 
             }
-            Reply  r = new Reply(localuser.getUsername(),t.getTitle()+Integer.toString(t.getTitleid()),message.getText());
+            Reply  r = new Reply(localuser,t.getTitle()+Integer.toString(t.getTitleid()),message.getText());
             main.outToServer.writeBytes("replyToThread"+"\n");
             main.outToServer.writeBytes(r.getThreadid()+"\n");
-            main.outToServer.writeBytes(r.getReplier()+"\n");
+            main.outToServer.writeBytes(localuser.getUsername()+"\n");
             main.outToServer.writeBytes(r.getMessage()+"\n");
-
+            main.outToServer.writeBytes(post+"\n");
             if(main.inFromServer.readLine().equals("Success"))
             {
                 JOptionPane.showMessageDialog(null,"Message sent", "Notification", JOptionPane.INFORMATION_MESSAGE);

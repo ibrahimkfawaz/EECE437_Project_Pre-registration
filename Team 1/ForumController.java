@@ -121,7 +121,20 @@ public class ForumController {
     public void onBackClicked(){ //TODO: fix
         LoginController l = new LoginController();
         if(localuser instanceof Student) {
-            l.showStudent((Student) this.localuser, this.main,this.scontroller);
+            try {
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("Student.fxml"));
+                AnchorPane student = (AnchorPane) loader.load();
+
+
+                scontroller = loader.getController();
+                scontroller.setMain(this.main, (Student) this.localuser, l);
+
+                main.rootLayout.setCenter(student);
+            } catch (IOException e) {
+
+            }
         }
         else if(localuser instanceof Professor){
             l.showProfessor((Professor) this.localuser,this.main);
@@ -130,13 +143,14 @@ public class ForumController {
 
     public void onListViewClicked(){
         int id=  received.getSelectionModel().getSelectedItem().getTitleid();
-        String title = received.getSelectionModel().getSelectedItem().getTitle();
+        String t = received.getSelectionModel().getSelectedItem().getTitle();
 
         for(int i =0;i<recmsgs.size();i++)
         {
-            if(recmsgs.get(i).getTitleid()== id && recmsgs.get(i).getTitle().equals(title))
+            if(recmsgs.get(i).getTitleid()== id && recmsgs.get(i).getTitle().equals(t)) {
                 showthreads(recmsgs.get(i));
                 break;
+            }
         }
 
     }

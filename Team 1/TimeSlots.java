@@ -1,3 +1,6 @@
+package sample;
+import java.util.ArrayList;
+
 //a class that represents time slots for a room
 public class TimeSlots
 {
@@ -44,6 +47,7 @@ public class TimeSlots
 	{
 		int i = slots.indexOf(s);
 		slots.remove(i);
+		return s;
 	}
 
 

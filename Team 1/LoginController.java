@@ -128,7 +128,7 @@ public class LoginController {
 
 
             controller = loader.getController();
-            controller.setMain(main,s);
+            controller.setMain(this.main,s,this);
 
             main.rootLayout.setCenter(student);
 

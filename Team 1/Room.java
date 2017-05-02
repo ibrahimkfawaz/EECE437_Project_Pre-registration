@@ -1,3 +1,6 @@
+package sample;
+import java.util.ArrayList;
+
 //a class to represent a classroom
 //each room has an id, building name, room number, capacity,
 public class Room
@@ -13,7 +16,7 @@ public class Room
 		Then the course of CRN 14607 is in this room every MWF at 9 AM till 9:50 AM
 		
 	*/
-	private ArrayList<Integer> classes; 
+	private ArrayList<Integer> classes;
 	public Room()
 	{
 		slots = new TimeSlots();
@@ -35,7 +38,7 @@ public class Room
 		else
 		{
 			classes.add(crn);
-			slots.addSlot(s);
+			slots.addSlot(slot);
 		}
 	}
 	//return the id

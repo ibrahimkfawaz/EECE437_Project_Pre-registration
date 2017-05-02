@@ -193,6 +193,11 @@ public class ProfessorPageController extends PageController{
             localprofessor.getProposedcourses().add(course);
             data.remove(modifyingindex);
             data.add(course);
+            String Status = main.inFromServer.readLine();
+            if(Status.equals("Success")){
+                course.setCrn(Integer.parseInt(main.inFromServer.readLine()));
+                JOptionPane.showMessageDialog(null,"Success", "Notification", JOptionPane.INFORMATION_MESSAGE);
+            }
             proposedcourses.setItems(data);
 
 
@@ -225,11 +230,17 @@ public class ProfessorPageController extends PageController{
 
             data.add(course);
             proposedcourses.setItems(data);
+            boolean flag = false;
+            for(int i=0;i<data1.size();i++)
+            {
+                if(data1.get(i).getCourseCode().equals(course.getCourseCode()))
+                    flag=true;
+            }
 
-
-            data1.add(course);
-            allcourses.setItems(data1);
-
+            if(!flag) {
+                data1.add(course);
+                allcourses.setItems(data1);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

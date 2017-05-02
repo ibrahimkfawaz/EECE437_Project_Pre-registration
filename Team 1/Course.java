@@ -129,6 +129,10 @@ public class Course {
         this.crn = crn;
     }
 
+    public void addpre_reg(Student s)
+    {
+        pre_registered.add(s);
+    }
     public int getcap(){
         return pre_registered.size();
     }

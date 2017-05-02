@@ -1,3 +1,6 @@
+package sample;
+import java.util.ArrayList;
+
 public class Catalog
 {
 	public ArrayList<String> names; //names of courses, "EECS 201 - Introduction to Programming" for example

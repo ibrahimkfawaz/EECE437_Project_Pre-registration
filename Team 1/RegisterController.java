@@ -3,9 +3,11 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
@@ -16,6 +18,8 @@ public class RegisterController {
     private Main main;
     private Student student;
     private StudentPageController s;
+    private LoginController l;
+    private Course c;
     @FXML
     private TableView<Course> availablecourses = new TableView<>();
     @FXML
@@ -26,15 +30,18 @@ public class RegisterController {
     private TableColumn<Course, String> Coursedesc;
 
     private ObservableList<Course> data;
-
-    public void setMain(Main main,Student stud,String dept,StudentPageController s){
+    private ObservableList<Course> co;
+    public void setMain(Main main,Student stud,String dept,StudentPageController s,LoginController l,ObservableList<Course> co){
         Coursename.setCellValueFactory(new PropertyValueFactory<Course, String>("courseCode"));
         CourseTime.setCellValueFactory(new PropertyValueFactory<Course, String>("time_slot"));
         Coursedesc.setCellValueFactory(new PropertyValueFactory<Course, String>("CourseDesc"));
         this.main=main;
         this.student=stud;
         this.s=s;
+        this.l=l;
+        this.co=co;
         data = FXCollections.observableArrayList();
+        co = FXCollections.observableArrayList();
         try{
             main.outToServer.writeBytes("getOffered"+"\n");
             main.outToServer.writeBytes(dept+"\n");
@@ -58,11 +65,28 @@ public class RegisterController {
     }
 
     public void OnBackClicked(){
-        LoginController l = new LoginController();
-        l.showStudent(this.student,this.main,this.s);
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("Student.fxml"));
+            AnchorPane student = (AnchorPane) loader.load();
+
+
+            s = loader.getController();
+            s.setMain(this.main,this.student,this.l);
+            s.update(co);
+
+            main.rootLayout.setCenter(student);
+        }catch (IOException e){
+
+        }
+
     }
 
     public void OnPreregisterClicked(){
+        c = availablecourses.getSelectionModel().getSelectedItem();
+        student.addPre_reg(c);
+        c.addpre_reg(student);
+        co.add(c);
 
     }
 }

@@ -13,6 +13,10 @@ public class Professor extends User {
         this.proposedcourses = proposedcourses;
     }
 
+    public Professor(String username) {
+        this.username = username;
+    }
+
     public Professor() {
     }
 

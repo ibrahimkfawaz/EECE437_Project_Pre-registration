@@ -233,7 +233,7 @@ public class Server extends Thread {
 
                     rs.absolute(i);
 
-                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(3) + "\n" + rs.getString(4) + "\n");
+                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(3) + "\n" + rs.getString(4) + "\n"+rs.getString(5)+"\n");
                 }
             }catch (IOException e)
             {
@@ -249,14 +249,16 @@ public class Server extends Thread {
         String threadid = null;
         String replier = null;
         String message = null;
+        String post;
         try {
             threadid = in.readLine();
             replier = in.readLine();
             message = in.readLine();
+            post = in.readLine();
 
 
         try {
-            statement.execute("insert into replies (threadid,replier,message) values (\"" + threadid + "\",\"" + replier + "\",\"" + message + "\");");
+            statement.execute("insert into replies (threadid,replier,message,post) values (\"" + threadid + "\",\"" + replier + "\",\"" + message + "\",\"" + post + "\");");
         } catch (SQLException e) {
             e.printStackTrace();
         }
