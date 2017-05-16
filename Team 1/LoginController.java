@@ -19,6 +19,7 @@ public class LoginController {
     private String Status;
     String category;
     String un;
+    String dept;
 
 
     @FXML
@@ -33,60 +34,34 @@ public class LoginController {
     @FXML
     private PasswordField password;
 
-    @FXML
-    private RadioButton student;
-
-    @FXML
-    private RadioButton professor;
-
-    @FXML
-    private RadioButton admin;
-
-    private ToggleGroup t = new ToggleGroup();
 
     public void setMain(Main main) {
 
         this.main = main;
-        student.setToggleGroup(t);
-        professor.setToggleGroup(t);
-        admin.setToggleGroup(t);
 
     }
 
 
     @FXML
     public void OnLoginClicked(){
-        if(((!student.isSelected()) && (!professor.isSelected())) && (!admin.isSelected()))
-        {
-            JOptionPane.showMessageDialog(null,"Please Select if you are a student,professor, or an administrator", "Notification", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else if (student.isSelected())
-            category="student";
-        else if(professor.isSelected())
-            category = "professor";
-        else
-            category = "admin";
 
         try{
             main.outToServer.writeBytes("Login\n");
-            main.outToServer.writeBytes(category+"\n");
             main.outToServer.writeBytes(username.getText() + "\n");
             main.outToServer.writeBytes(password.getText() + "\n");
             Status = main.inFromServer.readLine();
 
-            System.out.println(un);
-            System.out.println(Status);
-
-
-
         if(Status.contains("Success"))
         {
             un = main.inFromServer.readLine();
+            category = main.inFromServer.readLine();
+            dept = main.inFromServer.readLine();
             if(category.equals("student"))
             {
                 Student s = new Student();
 
                 s.setUsername(un);
+                s.setDept(dept);
 
                 showStudent(s,this.main,new StudentPageController());
 
@@ -96,6 +71,7 @@ public class LoginController {
                 Professor p = new Professor();
 
                 p.setUsername(un);
+                p.setDept(dept);
 
                 showProfessor(p,this.main);
             }
@@ -104,7 +80,7 @@ public class LoginController {
                 Admin a = new Admin();
 
                 a.setUsername(un);
-
+                a.setDept(dept);
                 showAdmin(a,this.main);
 
             }
@@ -168,9 +144,9 @@ public class LoginController {
             loader.setLocation(Main.class.getResource("Admin.fxml"));
             AnchorPane admin = (AnchorPane) loader.load();
 
-//            StudentPageController controller = new StudentPageController();
-//            controller = loader.getController();
-//            controller.setMain(main,a);
+            AdminPageController controller = new AdminPageController();
+            controller = loader.getController();
+            controller.setMain(main,a);
 
             main.rootLayout.setCenter(admin);
 

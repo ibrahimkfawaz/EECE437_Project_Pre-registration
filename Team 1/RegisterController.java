@@ -8,7 +8,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BackgroundPosition;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -54,6 +56,7 @@ public class RegisterController {
                 c.setCourseCode(main.inFromServer.readLine());
                 c.setCourseDesc(main.inFromServer.readLine());
                 c.setTime_slot(main.inFromServer.readLine());
+                c.setAssigned_slot(c.parseslot(c.getTime_slot()));
                 data.add(i,c);
 
             }
@@ -73,7 +76,7 @@ public class RegisterController {
 
             s = loader.getController();
             s.setMain(this.main,this.student,this.l);
-            s.update(co);
+           // s.update(co);
 
             main.rootLayout.setCenter(student);
         }catch (IOException e){
@@ -84,9 +87,31 @@ public class RegisterController {
 
     public void OnPreregisterClicked(){
         c = availablecourses.getSelectionModel().getSelectedItem();
-        student.addPre_reg(c);
-        c.addpre_reg(student);
-        co.add(c);
+        String s = c.getAssigned_slot().getStart();
+        String e = c.getAssigned_slot().getEnd();
+        System.out.println(s);
+        System.out.println(e);
+        boolean flag=false;
+        int start = Integer.parseInt(s);
+        int end = Integer.parseInt(e);
+        for(int i =0;i<co.size();i++){
+            if(Integer.parseInt(co.get(i).getAssigned_slot().getStart())==start ||
+               Integer.parseInt(co.get(i).getAssigned_slot().getEnd())==end ) {
+                flag = true;
+                JOptionPane.showMessageDialog(null, "Time Conflict", "Notification", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        if(!flag) {
+            student.addPre_reg(c);
+            student.SaveCourses();
+            c.addpre_reg(student);
+            co.add(c);
+            try{
+                main.outToServer.writeBytes("increasecap"+"\n"+c.getCourseCode()+"\n");
+            }catch (IOException e1){
+                e1.printStackTrace();
+            }
+        }
 
-    }
+   }
 }

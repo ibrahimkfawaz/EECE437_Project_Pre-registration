@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminPageController">
+   <children>
+      <TabPane layoutX="9.0" layoutY="11.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Petitions">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="petitions" layoutY="-1.0" prefHeight="322.0" prefWidth="600.0">
+                          <columns>
+                            <TableColumn fx:id="petitioner" prefWidth="96.0" text="Petitioner" />
+                            <TableColumn fx:id="type" prefWidth="94.0" text="Type" />
+                              <TableColumn fx:id="details" prefWidth="409.0" text="Details" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="44.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#OnAcceptClicked" text="Accept" />
+                        <Button layoutX="498.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#onRejectClicked" text="Reject" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Cataloge">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="allcourses" layoutX="168.0" layoutY="44.0" prefHeight="328.0" prefWidth="600.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="allCoursename" prefWidth="96.0" text="Course" />
+                            <TableColumn fx:id="allCoursedesc" prefWidth="503.0" text="Course Description" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="251.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#OnRemoveClicked" text="Remove Course" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Courses">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

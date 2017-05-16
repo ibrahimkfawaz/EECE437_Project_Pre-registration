@@ -27,6 +27,8 @@ public class ForumController {
     private User localuser;
     private StudentPageController scontroller;
     private ProfessorPageController pcontroller;
+    private AdminPageController acontroller;
+
 
     @FXML
     private Button newmessage;
@@ -61,7 +63,7 @@ public class ForumController {
         }
         else {
             this.localuser = (Admin) u;
-            //TODO: amdinpagecontroller
+            this.acontroller = (AdminPageController) controller;
         }
 
         try {
@@ -139,6 +141,10 @@ public class ForumController {
         else if(localuser instanceof Professor){
             l.showProfessor((Professor) this.localuser,this.main);
         }
+
+        else if(localuser instanceof Professor){
+            l.showAdmin((Admin) this.localuser,this.main);
+        }
     }
 
     public void onListViewClicked(){
@@ -162,7 +168,7 @@ public class ForumController {
             loader.setLocation(Main.class.getResource("NewMessage.fxml"));
             AnchorPane newmessage = (AnchorPane) loader.load();
             NewMessageController controller = loader.getController();
-            controller.setMain(this.main,this.localuser);
+            controller.setMain(this.main,this.localuser,message);
             Scene scene = new Scene(newmessage);
             message.setScene(scene);
             message.setTitle("message");
@@ -173,6 +179,8 @@ public class ForumController {
             e.printStackTrace();
         }
     }
+
+
 
     public void showthreads(Threads t){
         try {

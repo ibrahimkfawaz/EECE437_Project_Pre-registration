@@ -7,6 +7,7 @@ public abstract class User {
     private int id;
     protected String username;
     protected String password;
+    protected String dept;
     public void setUsername(String username){this.username = username;}
     public String getUsername(){return username;}
     public void setPassword(String username){this.username = username;}
@@ -14,7 +15,14 @@ public abstract class User {
     public void setid(int id){this.id=id;}
     public int getid(){return this.id;}
 
+    public void setDept(String dept)
+    {
+        this.dept = dept;
+    }
 
+    public String getDept(){
+        return this.dept;
+    }
 
     @Override
     public String toString() {

@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ForumController">
    <children>
-      <Button fx:id="newmessage" layoutX="519.0" layoutY="21.0" mnemonicParsing="false" onAction="#onNewClicked" text="NewMessage" />
+      <Button fx:id="newmessage" layoutX="477.0" layoutY="21.0" mnemonicParsing="false" onAction="#onNewClicked" text="New Thread" />
       <ListView fx:id="received" layoutX="32.0" layoutY="56.0" onMouseClicked="#onListViewClicked" prefHeight="321.0" prefWidth="390.0" />
       <Button fx:id="back" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#onBackClicked" onMouseClicked="#onBackClicked" text="Back" />
       <ListView fx:id="init" layoutX="422.0" layoutY="56.0" prefHeight="321.0" prefWidth="141.0" />

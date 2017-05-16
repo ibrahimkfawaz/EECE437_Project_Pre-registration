@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.image.ImagingOpException;
@@ -17,6 +18,7 @@ public class NewMessageController {
     private String t;
     private User localuser;
     private String Status;
+    private Stage  stage;
 //    private Student localstudent;
 //    private Professor localprofessor;
 //    private Admin localadmin;
@@ -27,7 +29,8 @@ public class NewMessageController {
     @FXML
     private TextArea message;
 
-    public void setMain(Main main,User user){
+    public void setMain(Main main,User user,Stage stage){
+        this.stage=stage;
         this.main = main;
         this.localuser = user;
 //        if(user instanceof Student)
@@ -52,6 +55,7 @@ public class NewMessageController {
                 if(Status.equals("Success"))
                 {
                     JOptionPane.showMessageDialog(null,"Sending Succeeded", "Notification", JOptionPane.INFORMATION_MESSAGE);
+
                 }else
                 {
                     JOptionPane.showMessageDialog(null,"Sending Failed", "Notification", JOptionPane.INFORMATION_MESSAGE);

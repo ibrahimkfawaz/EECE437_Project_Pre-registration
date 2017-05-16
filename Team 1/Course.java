@@ -1,18 +1,19 @@
 package sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Hasan Fakih on 4/29/2017.
  */
-public class Course {
+public class Course implements Serializable{
     private String courseCode; //TODO: make int
     private String courseDesc;
     private String courseName;
     private Boolean offered;
     private ArrayList<Student> pre_registered = new ArrayList<>(); //TODO: store only ids hashed with students
     private Room assigned_Room;
-    private TimeSlot assigned_slot;
+    private TimeSlot assigned_slot = new TimeSlot();
     private String time_slot;
     //FIXME: time slot used should be the one implemented in a class not the string.
     private Professor instructor;
@@ -38,6 +39,18 @@ public class Course {
         this.courseCode = courseCode;
         this.courseDesc = courseDesc;
         this.time_slot =time_slot;
+    }
+
+
+    public TimeSlot parseslot(String slot){
+        // M T W R F MWF TR MW @ xx:xx to xx:xx
+        System.out.println(slot);
+        int i = slot.indexOf('@');
+        System.out.println(i);
+        assigned_slot.setStart(slot.substring(i+2,i+4));
+        assigned_slot.setEnd(slot.substring(i+11,i+13));
+        return assigned_slot;
+
     }
 
     public int getCrn() {

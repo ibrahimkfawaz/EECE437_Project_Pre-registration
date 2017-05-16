@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NewPetitionController">
+   <children>
+      <RadioButton fx:id="overload" layoutX="54.0" layoutY="32.0" mnemonicParsing="false" text="Overload" />
+      <RadioButton fx:id="underload" layoutX="229.0" layoutY="32.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="87.0" text="Underload" />
+      <RadioButton fx:id="equivalence" layoutX="432.0" layoutY="32.0" mnemonicParsing="false" text="Course Equivlance" />
+      <TextArea fx:id="details" layoutX="48.0" layoutY="65.0" prefHeight="293.0" prefWidth="516.0" promptText="Detailes..." />
+      <Button layoutX="274.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#OnSubmitClicked" text="Submit" />
+   </children>
+</AnchorPane>

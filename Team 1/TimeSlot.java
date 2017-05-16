@@ -1,5 +1,7 @@
 package sample;
 
+import java.io.Serializable;
+
 /**
  * Created by Hasan Fakih on 4/30/2017.
  * a class that represent the time slot of the class
@@ -9,12 +11,13 @@ package sample;
  * when a class is proposed it will be assigned a slot
  * and when checking overlapping it would be easy to check start end and in between
  */
-public class TimeSlot {
+public class TimeSlot implements Serializable {
     private Days d;
     private int duration; //in minutes
     private String start;
     private String end;
     private String am_pm;
+
 
     public TimeSlot() {
     }

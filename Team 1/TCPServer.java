@@ -6,8 +6,13 @@ import java.net.Socket;
 
 /**
  * Created by Hasan Fakih on 4/16/2017.
+ * A singleton
  */
 public class TCPServer {
+
+    private TCPServer(){
+
+    }
 
     public static void main(String[] args){
         try {

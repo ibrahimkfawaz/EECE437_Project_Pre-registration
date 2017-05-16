@@ -24,15 +24,33 @@
              <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                    <children>
-                      <TableView fx:id="mycourses" layoutX="24.0" layoutY="43.0" prefHeight="295.0" prefWidth="547.0">
+                      <TableView fx:id="mycourses" layoutX="24.0" layoutY="20.0" prefHeight="300.0" prefWidth="547.0">
                          <columns>
                             <TableColumn fx:id="myCoursename" prefWidth="93.0" text="Course Name" />
                             <TableColumn fx:id="myCoursetime" prefWidth="453.0" text="Course Time" />
                          </columns>
                       </TableView>
+                        <Button fx:id="Drop" layoutX="257.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#OnDropClicked" text="Drop" />
                    </children></AnchorPane>
              </content>
           </Tab>
+            <Tab text="My Petitions">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="petitions" layoutX="-3.0" layoutY="-2.0" prefHeight="335.0" prefWidth="600.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="type" prefWidth="93.0" text="Type" />
+                            <TableColumn fx:id="details" prefWidth="403.0" text="Details" />
+                              <TableColumn fx:id="status" prefWidth="103.0" text="Status" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="44.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#OnCleanClicked" text="Clean" />
+                        <Button layoutX="452.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#onNewPetitionClicked" text="New Petition" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

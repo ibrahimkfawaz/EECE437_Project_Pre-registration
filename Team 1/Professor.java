@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Created by Hasan Fakih on 4/9/2017.
  */
 public class Professor extends User {
-        private ArrayList<Course> proposedcourses = new ArrayList<>();
-        private String dept;
+    private ArrayList<Course> proposedcourses = new ArrayList<>();
+
 
     public Professor(ArrayList<Course> proposedcourses) {
         this.proposedcourses = proposedcourses;
@@ -28,11 +28,5 @@ public class Professor extends User {
         this.proposedcourses = proposedcourses;
     }
 
-    public String getDept() {
-        return dept;
-    }
 
-    public void setDept(String dept) {
-        this.dept = dept;
-    }
 }

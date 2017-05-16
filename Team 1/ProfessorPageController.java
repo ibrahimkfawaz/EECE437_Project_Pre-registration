@@ -24,7 +24,6 @@ public class ProfessorPageController extends PageController{
     private Main main;
     private int modifyingindex;
 
-    private Catalog cat = new Catalog();
 
     @FXML
     private TableView<Course> proposedcourses = new TableView<>();
@@ -80,16 +79,7 @@ public class ProfessorPageController extends PageController{
 
             main.outToServer.writeBytes("getCatalog"+"\n");
             count = Integer.parseInt(main.inFromServer.readLine());
-            for(int i=0;i<count;i++)
-            {
-                Course c1 = new Course();
-                c1.setCourseCode(main.inFromServer.readLine());
-                c1.setCourseDesc(main.inFromServer.readLine());
-                cat.addCourse(c1.getCourseCode(),c1.getCourseDesc());
-                data1.add(i,c1);
-            }
-
-            allcourses.setItems(data1);
+            showCatalog(this.main,allcourses,data1);
 
 
         } catch (IOException e) {
@@ -98,23 +88,7 @@ public class ProfessorPageController extends PageController{
     }
 
     public void onForumClicked(){
-        showforum();
-    }
-
-    public void showforum(){ //TODO: move this to a separate class.
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("Forum.fxml"));
-            AnchorPane forum = (AnchorPane) loader.load();
-
-            main.rootLayout.setCenter(forum);
-
-            ForumController controller = loader.getController();
-            controller.setMain(this.main,this.localprofessor,this);
-        }catch(IOException e)
-        {
-            e.printStackTrace();
-        }
+        showforum(this.main,this.localprofessor,this);
     }
 
     public void onNewCourseClicked(){
