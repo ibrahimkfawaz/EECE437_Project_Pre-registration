@@ -61,7 +61,6 @@ public class ModifyCourseController {
     }
 
     public void onModifyClicked(){
-        TimeSlot t=new TimeSlot();
         boolean f = false;
         //TODO: take care of correct format
 
@@ -75,28 +74,20 @@ public class ModifyCourseController {
 
         switch(days.getText()) {
             case "MWF":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), MWF);
                 break;
             case "MW":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), MW);
                 break;
             case "TR":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), TR);
                 break;
             case "M":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), M);
                 break;
             case "T":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), T);
                 break;
             case "W":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), W);
                 break;
             case "R":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), R);
                 break;
             case "F":
-                t = new TimeSlot(Integer.parseInt(duration.getText()), start.getText(), end.getText(),am_pm.getText(), F);
                 break;
             default:
                 f = true;
@@ -109,7 +100,6 @@ public class ModifyCourseController {
             course.setCourseDesc(coursedesc.getText());
             course.setCourseName(coursename.getText());
             course.setTime_slot(days.getText()+" @ "+ start.getText() + " to " + end.getText());
-            course.setAssigned_slot(t);
             pc.modify(course);
 
         }

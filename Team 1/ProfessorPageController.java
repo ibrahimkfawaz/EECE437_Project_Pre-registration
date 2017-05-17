@@ -78,7 +78,6 @@ public class ProfessorPageController extends PageController{
             proposedcourses.setItems(data);
 
             main.outToServer.writeBytes("getCatalog"+"\n");
-            count = Integer.parseInt(main.inFromServer.readLine());
             showCatalog(this.main,allcourses,data1);
 
 
@@ -158,7 +157,6 @@ public class ProfessorPageController extends PageController{
             main.outToServer.writeBytes(Integer.toString(course.getCrn())+"\n");
             main.outToServer.writeBytes(course.getCourseCode()+"\n");
             main.outToServer.writeBytes(localprofessor.getUsername()+"\n");
-//            main.outToServer.writeBytes(course.getAssigned_slot().toString()+"\n");
             main.outToServer.writeBytes(course.getTime_slot()+"\n");
             main.outToServer.writeBytes(course.getCourseDesc()+"\n");
             main.outToServer.writeBytes("101"+"\n"); //FIXME
@@ -188,7 +186,6 @@ public class ProfessorPageController extends PageController{
             main.outToServer.writeBytes("addNewCourse" + "\n");
             main.outToServer.writeBytes(course.getCourseCode()+"\n");
             main.outToServer.writeBytes(localprofessor.getUsername()+"\n");
-//            main.outToServer.writeBytes(course.getAssigned_slot().toString()+"\n");
             main.outToServer.writeBytes(course.getTime_slot()+"\n");
             main.outToServer.writeBytes(course.getCourseDesc()+"\n");
             main.outToServer.writeBytes("101"+"\n"); //FIXME

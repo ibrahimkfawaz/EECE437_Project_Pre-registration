@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public class TimeSlot implements Serializable {
     private Days d;
+    private String day;
     private int duration; //in minutes
     private String start;
     private String end;
@@ -28,6 +29,14 @@ public class TimeSlot implements Serializable {
         this.end = end;
         this.d=d;
         this.am_pm=am_pm;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     @Override

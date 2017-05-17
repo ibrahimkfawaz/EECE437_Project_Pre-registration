@@ -34,7 +34,7 @@ public class NewPetitionController {
     @FXML
     private TextArea details;
 
-    private ToggleGroup t;
+    private ToggleGroup t=new ToggleGroup();
 
 
     public void setMain(Main main,User user,Stage stage){

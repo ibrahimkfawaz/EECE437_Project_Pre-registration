@@ -121,6 +121,11 @@ public class StudentPageController extends PageController {
         localstudent.setPre_reg(my_courses);
         localstudent.SaveCourses();
         update(c);
+        try{
+            main.outToServer.writeBytes("decreasecap"+"\n"+c.getCourseCode()+"\n");
+        }catch (IOException e1){
+            e1.printStackTrace();
+        }
 
     }
 

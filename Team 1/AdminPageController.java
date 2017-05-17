@@ -3,9 +3,13 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.omg.CORBA.PERSIST_STORE;
 
 import javax.swing.*;
@@ -34,31 +38,46 @@ public class AdminPageController extends PageController {
     @FXML
     private TableView<Petition> petitions;
 
+    @FXML
+    private TableColumn<Course, String> coursename;
+    @FXML
+    private TableColumn<Course, String> coursecap;
+    @FXML
+    private TableColumn<Course, String> time;
+    @FXML
+    private TableColumn<Course, String> room;
+    @FXML
+    private TableView<Course> courses;
 
     ObservableList<Course> data;
     ObservableList<Petition> data1;
-    ObservableList<Petition> data2;
+    ObservableList<Course> data2;
 
     public void setMain(Main main,Admin admin){
         this.main= main;
         this.localadmin = admin;
         allCoursename.setCellValueFactory(new PropertyValueFactory<Course, String>("courseCode"));
-        allCoursedesc.setCellValueFactory(new PropertyValueFactory<Course, String>("CourseDesc"));
+        allCoursedesc.setCellValueFactory(new PropertyValueFactory<Course, String>("courseDesc"));
+        coursename.setCellValueFactory(new PropertyValueFactory<Course, String>("courseCode"));
+        coursecap.setCellValueFactory(new PropertyValueFactory<Course, String>("coursecap"));
+        room.setCellValueFactory(new PropertyValueFactory<Course, String>("room"));
+        time.setCellValueFactory(new PropertyValueFactory<Course, String>("time_slot"));
         petitioner.setCellValueFactory(new PropertyValueFactory<Petition, String>("petitioner"));
         type.setCellValueFactory(new PropertyValueFactory<Petition, String>("type"));
         details.setCellValueFactory(new PropertyValueFactory<Petition, String>("details"));
+
         data1 = FXCollections.observableArrayList();
         data = FXCollections.observableArrayList();
+        data2 =  FXCollections.observableArrayList();
         try{
 
             main.outToServer.writeBytes("getCatalog"+"\n");
             showCatalog(this.main,allcourses,data);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             showPetition();
-
-
+            showCourses();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void OnRemoveClicked(){
@@ -125,6 +144,67 @@ public class AdminPageController extends PageController {
             }
 
             petitions.setItems(data1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onAllocateClicked(){
+        try {
+            Course c = courses.getSelectionModel().getSelectedItem();
+            Stage allocate = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("Allocate.fxml"));
+            AnchorPane alloc = (AnchorPane) loader.load();
+            AllocateController controller = loader.getController();
+            controller.setMain(this.main, c,this);
+            Scene scene = new Scene(alloc);
+            allocate.setScene(scene);
+            allocate.setTitle("Allocate Room For " + c.getCourseCode());
+            allocate.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void update(Course c){
+        try {
+            main.outToServer.writeBytes("updateRoom"+"\n");
+            main.outToServer.writeBytes(c.getRoom()+"\n");
+            main.outToServer.writeBytes(c.getCourseCode()+"\n");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        for(int i=0;i<data2.size();i++){
+            if(data2.get(i).equals(c)){
+                data2.remove(i);
+            }
+        }
+
+        data2.add(c);
+        courses.setItems(data2);
+
+
+    }
+
+    public void showCourses() {
+        try {
+            main.outToServer.writeBytes("getDeptCourses"+"\n"+this.localadmin.getDept()+"\n");
+            int count = Integer.parseInt(main.inFromServer.readLine());
+            for (int i = 0; i < count; i++) {
+                Course c = new Course();
+                c.setDept(this.localadmin.getDept());
+                c.setCourseCode(main.inFromServer.readLine());
+                c.setCoursecap(Integer.parseInt(main.inFromServer.readLine()));
+                c.setTime_slot(main.inFromServer.readLine());
+               // c.setRoom(main.inFromServer.readLine());
+                data2.add(i, c);
+
+            }
+
+            courses.setItems(data2);
         } catch (IOException e) {
             e.printStackTrace();
         }

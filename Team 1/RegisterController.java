@@ -89,14 +89,13 @@ public class RegisterController {
         c = availablecourses.getSelectionModel().getSelectedItem();
         String s = c.getAssigned_slot().getStart();
         String e = c.getAssigned_slot().getEnd();
-        System.out.println(s);
-        System.out.println(e);
+        String d = c.getAssigned_slot().getDay();
         boolean flag=false;
         int start = Integer.parseInt(s);
         int end = Integer.parseInt(e);
         for(int i =0;i<co.size();i++){
-            if(Integer.parseInt(co.get(i).getAssigned_slot().getStart())==start ||
-               Integer.parseInt(co.get(i).getAssigned_slot().getEnd())==end ) {
+            if((Integer.parseInt(co.get(i).getAssigned_slot().getStart())==start ||
+               Integer.parseInt(co.get(i).getAssigned_slot().getEnd())==end )  &&(co.get(i).getAssigned_slot().getDay().contains(d))){
                 flag = true;
                 JOptionPane.showMessageDialog(null, "Time Conflict", "Notification", JOptionPane.INFORMATION_MESSAGE);
             }

@@ -1,85 +1,106 @@
 package sample;
+import javax.swing.*;
+import java.io.*;
 import java.util.ArrayList;
 
 //a class to represent a classroom
 //each room has an id, building name, room number, capacity,
 public class Room
 {
-	private int id; //unique id
-	private String bldg; //name of building
-	private int number; //room number
+    private String name;
 	private int capacity; //number of seats
-	private TimeSlots slots; //representation of time slots of every room
-	/*
-		represents the classes associated with the time slots
-		for example if slots[1] = MWF@9-9:50/AM and classes[1] = 14607
-		Then the course of CRN 14607 is in this room every MWF at 9 AM till 9:50 AM
-		
-	*/
-	private ArrayList<Integer> classes;
-	public Room()
-	{
-		slots = new TimeSlots();
-		classes = new ArrayList<Integer>();
-	}
-	//check if a slot is available
-	public boolean isSlotAvailable(String s)
-	{
-		return slots.isAvailable(s);
-	}
-	//add a class in a certain time slot
-	public void addClass(int crn,String slot)
-	{
-		//first check if the slot is available
-		if(!(slots.isAvailable(slot)))
-		{
-			System.out.println("Error: this slot is already occupied");
-		}
-		else
-		{
-			classes.add(crn);
-			slots.addSlot(slot);
-		}
-	}
-	//return the id
-	public int getId() 
-	{
-		return this.id;
-	}
-	//return room number
-	public int getNumber()
-	{
-		return this.number;
-	}
-	//return number of seats
-	public int getCapacity()
-	{
-		return this.capacity;
-	}
-	//return name of bldg
-	public String getBldg()
-	{
-		return this.bldg;
+	private ArrayList<TimeSlot> slots=new ArrayList<>(); //representation of time slots of every room
+	private String time_slot;
+
+    public boolean addtoRoom(Course c) {
+        slots = getRoomSlots();
+        for (int i = 0; i < slots.size(); i++) {
+            String s = c.getAssigned_slot().getStart();
+            String e = c.getAssigned_slot().getEnd();
+            String d = c.getAssigned_slot().getDay();
+            int start = Integer.parseInt(s);
+            int end = Integer.parseInt(e);
+
+            if ((Integer.parseInt(slots.get(i).getStart()) == start ||
+                    Integer.parseInt(slots.get(i).getEnd()) == end) && (slots.get(i).getDay().contains(d)))
+                return false;
+        }
+        slots.add(c.getAssigned_slot());
+        SaveRoomSlots();
+        return true;
+    }
+
+
+    public void SaveRoomSlots(){
+        try{
+            FileOutputStream fos= new FileOutputStream(this.name);
+            ObjectOutputStream oos= new ObjectOutputStream(fos);
+            oos.writeObject(slots);
+            oos.close();
+            fos.close();
+        }catch(IOException ioe){
+          //  ioe.printStackTrace();
+        }
+    }
+
+    public ArrayList<TimeSlot> getRoomSlots() {
+        try
+        {
+            FileInputStream fis = new FileInputStream(name);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            slots = (ArrayList) ois.readObject();
+            ois.close();
+            fis.close();
+        }catch(IOException ioe){
+          //    ioe.printStackTrace();
+            return slots;
+        }catch(ClassNotFoundException c){
+            // c.printStackTrace();
+            return slots;
+        }
+        return slots;
+    }
+
+
+
+	public Room() {
 	}
 
-	//set room id
-	public void setId(int i)
-	{
-		this.id=i;
+	public Room(int capacity, ArrayList<TimeSlot> slots, String time_slot) {
+		this.capacity = capacity;
+		this.slots = slots;
+		this.time_slot = time_slot;
 	}
-	//set bldg name
-	public void setBldg(String b)
-	{
-		this.bldg=b;
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
-	//set room number
-	public void setNumber(int n)
-	{
-		this.number=n;
+
+	public int getCapacity() {
+		return capacity;
 	}
-	//set room capacity
-	public void setCapacity(int c)
-	{
-		this.capacity=c;
+
+	public ArrayList<TimeSlot> getSlots() {
+		return slots;
 	}
+
+	public String getTime_slot() {
+		return time_slot;
+	}
+
+	public void setSlots(ArrayList<TimeSlot> slots) {
+		this.slots = slots;
+	}
+
+	public void setTime_slot(String time_slot) {
+		this.time_slot = time_slot;
+	}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

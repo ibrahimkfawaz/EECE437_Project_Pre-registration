@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AllocateController">
+   <children>
+      <TableView fx:id="rooms" layoutX="1.0" prefHeight="334.0" prefWidth="444.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="212.0" text="Room" />
+          <TableColumn fx:id="cap" prefWidth="231.0" text="Capacity" />
+        </columns>
+      </TableView>
+      <Button layoutX="197.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#onAllocateClicked" text="Allocate" />
+   </children>
+</AnchorPane>

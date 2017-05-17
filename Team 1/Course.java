@@ -13,13 +13,16 @@ public class Course implements Serializable{
     private Boolean offered;
     private ArrayList<Student> pre_registered = new ArrayList<>(); //TODO: store only ids hashed with students
     private Room assigned_Room;
-    private TimeSlot assigned_slot = new TimeSlot();
+    private String room;
+    private TimeSlot assigned_slot= new TimeSlot();
     private String time_slot;
     //FIXME: time slot used should be the one implemented in a class not the string.
     private Professor instructor;
     //private Admin dept;
     private String dept;
     private int crn; //to be set automatically.
+    private int coursecap;
+
 
     public Course(String courseCode, String courseDesc, Boolean offered, ArrayList<Student> pre_registered, Room assigned_Room, TimeSlot assigned_slot, Professor instructor, String dept) {
         this.courseCode = courseCode;
@@ -43,7 +46,18 @@ public class Course implements Serializable{
 
 
     public TimeSlot parseslot(String slot){
-        // M T W R F MWF TR MW @ xx:xx to xx:xx
+        // M @ xx:xx to xx:xx //18 19 20
+        System.out.println(slot);
+        if(slot.length()==18){
+            assigned_slot.setDay(slot.substring(0));
+        }
+
+        if(slot.length()==19){
+            assigned_slot.setDay(slot.substring(0,1));
+        }
+        else
+            assigned_slot.setDay(slot.substring(0,2));
+
         System.out.println(slot);
         int i = slot.indexOf('@');
         System.out.println(i);
@@ -150,5 +164,19 @@ public class Course implements Serializable{
         return pre_registered.size();
     }
 
+    public String getRoom() {
+        return room;
+    }
 
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public int getCoursecap() {
+        return coursecap;
+    }
+
+    public void setCoursecap(int coursecap) {
+        this.coursecap = coursecap;
+    }
 }

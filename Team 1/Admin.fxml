@@ -41,7 +41,18 @@
           </Tab>
             <Tab text="Courses">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="courses" layoutX="2.0" prefHeight="328.0" prefWidth="600.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="coursename" prefWidth="96.0" text="Course Name" />
+                              <TableColumn fx:id="time" prefWidth="171.0" text="Time Slot" />
+                            <TableColumn fx:id="coursecap" minWidth="0.0" prefWidth="203.0" text="Number of Student Pre-registered" />
+                              <TableColumn fx:id="room" prefWidth="129.0" text="Room" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="257.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#onAllocateClicked" text="Allocate Room" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

@@ -31,12 +31,12 @@ public class Server extends Thread {
             DataOut = new DataOutputStream(out);
             input = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             objToClient = new ObjectOutputStream(clientSocket.getOutputStream());
-
         } catch (IOException e) {
 
         }
 
     }
+
 
 
     public boolean connectMySQL() {
@@ -121,6 +121,18 @@ public class Server extends Thread {
                         break;
                     case "increasecap":
                         increasecap(input);
+                        break;
+                    case "getDeptCourses":
+                        getdeptcourses(input);
+                        break;
+                    case "getRooms":
+                        getrooms(input);
+                        break;
+                    case "decreasecap":
+                         decreasecap(input);
+                         break;
+                    case "updateRoom":
+                        updateroom(input);
                         break;
                     case "closeThread":
                         break;
@@ -637,6 +649,94 @@ public class Server extends Thread {
             e.printStackTrace();
         }
     }
+    public void decreasecap(BufferedReader in)
+    {
+        try {
+            String coursecode = in.readLine();
+
+            try {
+                String query = "UPDATE courses SET capacity=capacity-1 where coursename ='" + coursecode + "';";
+                statement.executeUpdate(query);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getdeptcourses(BufferedReader in){
+        int count = 0;
+        try {
+            String dept = in.readLine();
+            String query = "select * from courses where dept ='" + dept + "';";
+            ResultSet rs = null;
+            try {
+                rs = statement.executeQuery(query);
+                while (rs.next()) {
+                    count++;
+                }
+
+                DataOut.writeBytes(count + "\n");
+
+                for (int i = 1; i <= count; i++) {
+
+                    rs.absolute(i);
+                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(7)+ "\n"+ rs.getString(5)+ "\n");
+                }
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getrooms(BufferedReader in) {
+        try {
+            int count = 0;
+            String query = "select * from rooms;";
+            ResultSet rs = null;
+            try {
+                rs = statement.executeQuery(query);
+                while (rs.next()) {
+                    count++;
+                }
+
+                DataOut.writeBytes(count + "\n");
+
+                for (int i = 1; i <= count; i++) {
+
+                    rs.absolute(i);
+                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(3)+"\n");
+                }
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateroom(BufferedReader in){
+        try {
+            String roomname = in.readLine();
+            String coursecode = in.readLine();
+            try {
+                String query = "UPDATE courses SET room='" + roomname + "' where coursename ='" + coursecode + "';";
+                statement.executeUpdate(query);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }
-
-
