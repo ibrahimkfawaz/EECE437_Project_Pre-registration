@@ -12,7 +12,6 @@ import java.io.Serializable;
  * and when checking overlapping it would be easy to check start end and in between
  */
 public class TimeSlot implements Serializable {
-    private Days d;
     private String day;
     private int duration; //in minutes
     private String start;
@@ -27,7 +26,6 @@ public class TimeSlot implements Serializable {
         this.duration = duration;
         this.start = start;
         this.end = end;
-        this.d=d;
         this.am_pm=am_pm;
     }
 
@@ -39,16 +37,7 @@ public class TimeSlot implements Serializable {
         this.day = day;
     }
 
-    @Override
-    public String toString() {
-        return "TimeSlot{" +
-                "d=" + d +
-                ", duration=" + duration +
-                ", start='" + start + '\'' +
-                ", end='" + end + '\'' +
-                ", am_pm='" + am_pm + '\'' +
-                '}';
-    }
+
 
     public String getAm_pm() {
         return am_pm;
@@ -58,9 +47,6 @@ public class TimeSlot implements Serializable {
         this.am_pm = am_pm;
     }
 
-    public Days getD() {
-        return d;
-    }
 
     public int getDuration() {
         return duration;
@@ -74,9 +60,6 @@ public class TimeSlot implements Serializable {
         return end;
     }
 
-    public void setD(Days d) {
-        this.d = d;
-    }
 
     public void setDuration(int duration) {
         this.duration = duration;

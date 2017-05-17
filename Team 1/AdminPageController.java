@@ -209,4 +209,8 @@ public class AdminPageController extends PageController {
             e.printStackTrace();
         }
     }
+
+    public void OnForumClicked(){
+        showforum(this.main,this.localadmin,this);
+    }
 }

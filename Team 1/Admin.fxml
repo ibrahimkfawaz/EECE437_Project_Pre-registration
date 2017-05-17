@@ -21,6 +21,7 @@
                         </TableView>
                         <Button layoutX="44.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#OnAcceptClicked" text="Accept" />
                         <Button layoutX="498.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#onRejectClicked" text="Reject" />
+                        <Button layoutX="267.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#OnForumClicked" text="Negotiaitions" />
                      </children></AnchorPane>
             </content>
           </Tab>
