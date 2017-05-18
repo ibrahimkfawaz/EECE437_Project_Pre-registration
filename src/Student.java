@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Hasan Fakih on 4/9/2017.
+ * represents a student that mainly has an arraylist of his pre-registered courses
  */
 public class Student extends User implements Serializable {
     private ArrayList<Course> pre_reg = new ArrayList<>();

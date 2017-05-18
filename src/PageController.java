@@ -10,6 +10,8 @@ import java.io.IOException;
 
 /**
  * Created by Hasan Fakih on 5/1/2017.
+ * super class for the Professor-Student-AdminController pages
+ * it handle common functions between the three pages
  */
 public class PageController {
 

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Hasan Fakih on 4/16/2017.
+ * handle the actions of the students
  */
 public class StudentPageController extends PageController {
     private Student localstudent= new Student();

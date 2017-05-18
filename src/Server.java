@@ -8,6 +8,8 @@ import java.sql.*;
 
 /**
  * Created by Hasan Fakih on 4/16/2017.
+ * this is the database interface it is the class that setup the connection with the database and query the database
+ * every client connected to the server will have an instance if this interface
  */
 public class Server extends Thread {
     private Socket clientSocket = null;

@@ -6,11 +6,11 @@ import javafx.scene.control.TextField;
 
 import javax.swing.*;
 
-import static sample.Days.*;
-import static sample.Days.F;
 
 /**
  * Created by Hasan Fakih on 4/30/2017.
+ * Modify a course page
+ * accessible only by the professor.
  */
 public class ModifyCourseController {
     private  Course course = new Course();

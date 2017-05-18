@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Hasan Fakih on 4/9/2017.
+ * represents the professor
+ * a professor will has a username password and an arraylist of proposedcourses
  */
 public class Professor extends User {
     private ArrayList<Course> proposedcourses = new ArrayList<>();

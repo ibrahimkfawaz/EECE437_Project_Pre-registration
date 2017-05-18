@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Hasan Fakih on 4/27/2017.
+ * represents a thread with a title, titleid(unique) a message and the intiator of the thread
+ * also an ArrayList of replies holding the replies to this thread.
  */
 public class Threads {
     private String title;

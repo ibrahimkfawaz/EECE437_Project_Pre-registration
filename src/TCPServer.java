@@ -6,7 +6,7 @@ import java.net.Socket;
 
 /**
  * Created by Hasan Fakih on 4/16/2017.
- * A singleton
+ * A singleton class that represents a multi-threaded class which has a socket waiting for clients
  */
 public class TCPServer {
 

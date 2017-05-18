@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Hasan Fakih on 4/27/2017.
+ * handles what the user can do inside a thread (message) (mainly reply).
  */
 public class ThreadsController {
     private Main main;

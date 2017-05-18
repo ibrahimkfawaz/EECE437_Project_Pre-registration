@@ -1,6 +1,10 @@
 package sample;
 import java.util.ArrayList;
 
+/**
+ * this class is a singleton class represents the catalog of all the courses
+ */
+
 public class Catalog
 {
 	private static Catalog cat;

@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 /**
- * Created by Hasan Fakih on 5/16/2017.
+ * when a student want to instantiate new petition
  */
 public class NewPetitionController {
     private Main main;

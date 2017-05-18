@@ -17,7 +17,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 /**
- * Created by Hasan Fakih on 4/16/2017.
+ * handle actions done by the professor.
  */
 public class ProfessorPageController extends PageController{
     Professor localprofessor= new Professor();

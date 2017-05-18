@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * Created by Hasan Fakih on 4/17/2017.
+ * New message is when a user want to instantiate a new thread
  */
 public class NewMessageController {
     private Main main;

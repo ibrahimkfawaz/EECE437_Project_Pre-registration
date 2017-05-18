@@ -21,6 +21,9 @@ import java.util.Observable;
 
 /**
  * Created by Hasan Fakih on 4/9/2017.
+ * this is a controller for the Forum page of the application.
+ * this page is common between all users.
+ * where students/professors/admin could access it
  */
 public class ForumController {
     private Main main;

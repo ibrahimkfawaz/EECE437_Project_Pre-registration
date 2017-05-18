@@ -10,6 +10,10 @@ import javafx.scene.layout.AnchorPane;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * This is a class for handling  the login page
+ */
+
 public class LoginController {
 
     public Main main;

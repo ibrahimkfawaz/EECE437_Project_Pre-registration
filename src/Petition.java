@@ -2,6 +2,8 @@ package sample;
 
 /**
  * Created by Hasan Fakih on 5/16/2017.
+ * represents the petition
+ * a petition will have a type-petitioner-department-details and the status wether it is accepted or not
  */
 public class Petition {
     String type;

@@ -17,6 +17,7 @@ import java.io.IOException;
 
 /**
  * Created by Hasan Fakih on 5/11/2017.
+ * A controller for the admin page it extends the pagecontroller this class handles what admins can do (all his interacts with the GUI)
  */
 public class AdminPageController extends PageController {
     private Main main;

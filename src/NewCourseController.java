@@ -8,10 +8,11 @@ import javafx.scene.control.*;
 import javax.swing.*;
 import java.util.List;
 
-import static sample.Days.*;
-
 /**
  * Created by Hasan Fakih on 4/29/2017.
+ * Add a course page
+ * accessible only by the professor.
+ *
  */
 public class NewCourseController {
     private Professor localprofessor;

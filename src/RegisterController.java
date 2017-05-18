@@ -15,6 +15,7 @@ import java.io.IOException;
 
 /**
  * Created by Hasan Fakih on 5/1/2017.
+ * Handles registration process
  */
 public class RegisterController {
     private Main main;

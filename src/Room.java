@@ -3,8 +3,10 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
-//a class to represent a classroom
-//each room has an id, building name, room number, capacity,
+/**
+ * represents a room which has a capacity a name and an arraylist of timeslots that are already allocated of this room
+ * we are seriliazing this Arraylist of timeslots
+ */
 public class Room
 {
     private String name;

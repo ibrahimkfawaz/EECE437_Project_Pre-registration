@@ -12,6 +12,9 @@ import java.io.IOException;
 
 /**
  * Created by Hasan Fakih on 5/17/2017.
+ * Controller for allocate page where the admin could choose a room for each proposed course
+ * and if the room is not allocated at that specific time it will accept this new allocation
+ * otherwise it will not and it will tell the admin to choose new room
  */
 public class AllocateController {
     private Course c;

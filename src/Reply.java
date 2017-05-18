@@ -2,6 +2,7 @@ package sample;
 
 /**
  * Created by Hasan Fakih on 4/27/2017.
+ * represents a reply that has a replier and threadid (unique) and the message
  */
 public class Reply {
 //    private String replier;
