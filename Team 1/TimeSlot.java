@@ -22,7 +22,7 @@ public class TimeSlot implements Serializable {
     public TimeSlot() {
     }
 
-    public TimeSlot(int duration, String start, String end,String am_pm, Days d) {
+    public TimeSlot(int duration, String start, String end,String am_pm) {
         this.duration = duration;
         this.start = start;
         this.end = end;

@@ -683,7 +683,7 @@ public class Server extends Thread {
                 for (int i = 1; i <= count; i++) {
 
                     rs.absolute(i);
-                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(7)+ "\n"+ rs.getString(5)+ "\n");
+                    DataOut.writeBytes(rs.getString(2) + "\n" + rs.getString(7)+ "\n"+ rs.getString(5)+ "\n"+rs.getString(6)+ "\n");
                 }
 
 

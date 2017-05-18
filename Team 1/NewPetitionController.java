@@ -21,6 +21,7 @@ public class NewPetitionController {
     private User localuser;
     private String Status;
     private Stage stage;
+    private StudentPageController pc;
 
     @FXML
     private RadioButton overload;
@@ -37,13 +38,14 @@ public class NewPetitionController {
     private ToggleGroup t=new ToggleGroup();
 
 
-    public void setMain(Main main,User user,Stage stage){
+    public void setMain(Main main,User user,Stage stage,StudentPageController pc){
         this.overload.setToggleGroup(t);
         this.underload.setToggleGroup(t);
         this.equivalence.setToggleGroup(t);
         this.stage=stage;
         this.main = main;
         this.localuser = user;
+        this.pc=pc;
     }
 
     public void OnSubmitClicked(){
@@ -69,6 +71,11 @@ public class NewPetitionController {
             if(Status.equals("Success"))
             {
                 JOptionPane.showMessageDialog(null,"Submitting Successfully", "Notification", JOptionPane.INFORMATION_MESSAGE);
+                Petition p = new Petition();
+                p.setType(type);
+                p.setDetails(details.getText());
+                p.setStatus("pending");
+                pc.addpetition(p);
 
             }else
             {

@@ -115,6 +115,12 @@ public class StudentPageController extends PageController {
         mycourses.setItems(data);
     }
 
+    public void addpetition(Petition p){
+        data1.add(p);
+
+        petitions.setItems(data1);
+    }
+
     public void OnDropClicked(){
         Course c = mycourses.getSelectionModel().getSelectedItem();
         my_courses.remove(c);
@@ -170,7 +176,7 @@ public class StudentPageController extends PageController {
             loader.setLocation(Main.class.getResource("Petition.fxml"));
             AnchorPane newpetition = (AnchorPane) loader.load();
             NewPetitionController controller = loader.getController();
-            controller.setMain(this.main,this.localstudent,petition);
+            controller.setMain(this.main,this.localstudent,petition,this);
             Scene scene = new Scene(newpetition);
             petition.setScene(scene);
             petition.setTitle("message");

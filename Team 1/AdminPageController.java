@@ -189,6 +189,23 @@ public class AdminPageController extends PageController {
 
     }
 
+    public void onLogoutClicked(){
+//        this.main.showLogin();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("Login.fxml"));
+            AnchorPane Login = (AnchorPane) loader.load();
+
+            main.rootLayout.setCenter(Login);
+
+
+            LoginController controller = loader.getController();
+            controller.setMain(this.main);
+        }catch (IOException e){
+
+        }
+    }
+
     public void showCourses() {
         try {
             main.outToServer.writeBytes("getDeptCourses"+"\n"+this.localadmin.getDept()+"\n");
@@ -199,7 +216,7 @@ public class AdminPageController extends PageController {
                 c.setCourseCode(main.inFromServer.readLine());
                 c.setCoursecap(Integer.parseInt(main.inFromServer.readLine()));
                 c.setTime_slot(main.inFromServer.readLine());
-               // c.setRoom(main.inFromServer.readLine());
+                c.setRoom(main.inFromServer.readLine());
                 data2.add(i, c);
 
             }
